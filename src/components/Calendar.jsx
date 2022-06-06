@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableOpacity, Text, Button} from 'react-native';
 import {Agenda, LocaleConfig} from 'react-native-calendars';
-import {Card, Avatar} from 'react-native-paper';
+import {Modal, Portal, Card, Avatar, Provider} from 'react-native-paper';
 
 LocaleConfig.locales['es'] = {
   monthNames: [
@@ -104,9 +104,6 @@ const Calendar =  () => {
                 {
                     tempItems[timeToString(date)] = [];
                 }
-
-                
-                
             }
             setItems(tempItems)
         }, 1000)
@@ -116,21 +113,21 @@ const Calendar =  () => {
 
     const renderItem = (item) => {
         return (
-        <TouchableOpacity style={{marginRight: 10, marginTop: 17}}>
-            <Card>
-            <Card.Content>
-                <View
-                style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                }}>
-                <Text>{item.name}</Text>
-                <Avatar.Text label="J" />
-                </View>
-            </Card.Content>
-            </Card>
-        </TouchableOpacity>
+            <TouchableOpacity style={{marginRight: 10, marginTop: 17}}>
+                <Card>
+                    <Card.Content>
+                        <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                        }}>
+                            <Text>{item.name}</Text>
+                            <Avatar.Text label="J" />
+                        </View>
+                    </Card.Content>
+                </Card>
+            </TouchableOpacity>
         )
     }
     return (
