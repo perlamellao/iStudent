@@ -1,12 +1,50 @@
-import React from "react"
-import { Text, View, StyleSheet, Image } from "react-native"
+import React, { useState } from "react"
+import { Text, View, StyleSheet, Image, Button } from "react-native"
+import { Link, useLocation} from "react-router-native"
+
+
 
 const Footer = () => {
+
+    const location = useLocation()
+
+    
+    const getIcon = ({icon_name}) => {
+        switch (icon_name) {
+            case "home":
+                if (location.pathname === "/") {
+                    return <Image style={styles.icons} source={require('../img/homeActive.png')} />
+                } else {
+                    return <Image style={styles.icons} source={require('../img/home.png')} />
+                }
+                break
+            case "profile":
+                if (location.pathname === "/profile") {
+                    return <Image style={styles.icons} source={require('../img/profileActive.png')} />
+                } else{
+                    return <Image style={styles.icons} source={require('../img/profile.png')} />
+                }
+                break
+            case "calendar":
+                if (location.pathname === "/calendar") {
+                    return <Image style={styles.icons} source={require('../img/calendarActive.png')} />
+                } else{
+                    return <Image style={styles.icons} source={require('../img/calendar.png')} />
+                }
+        }
+    }
+        //<Image style={styles.icons} source={require()} />
     return (
         <View style={styles.footer}>
-            <Text style={styles.text}>Footer</Text>
-            <Image style={styles.icons} source={require('../img/home.png')}></Image>
-            <Text style={styles.text}>Footer</Text>
+             <Link to={'/calendar'} underlayColor="">
+                {getIcon({icon_name: 'calendar'})}
+            </Link>
+            <Link to={'/'} underlayColor="">
+                {getIcon({icon_name: 'home'})}
+            </Link>
+            <Link to={'/profile'} underlayColor="">
+                {getIcon({icon_name: 'profile'})}
+            </Link>
         </View>
     )
 }
@@ -25,13 +63,13 @@ const styles = StyleSheet.create({
         paddingLeft: 35,
     },
     text: {
-        marginLeft: 20,
+        marginLeft: 0,
         color: "#fff"
     },
     icons: {
         width: 32,
         height: 32,
-    }
+    },
 })
 
 export default Footer
